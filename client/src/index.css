@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+    --primary: #212529;
+    --secondary: #343a40;
+    --accent: #495057;
+    --neutral: #6c757d;
+    --dark_text: #ced4da;
+    --light_text: #e9ecef;
+    --neutral_text: #f8f9fa;
+}
+
+/*body Styles*/
+
+@layer components {
+    .body {
+        @apply max-w-full min-h-screen bg-gradient-to-br from-25% from-[var(--accent)] via-50%  via-[var(--neutral)] to-70%  to-[var(--accent)];
+    }
+}
+
+/*Auth Loader Styles*/
+@layer components {
+    .auth_loader {
+        @apply w-full min-h-screen flex justify-center items-center bg-[var(--primary)];
+    }
+}
+
+/*Auth pages styles*/
+
+@layer components {
+    .auth_container {
+        @apply max-w-full mx-auto h-screen flex justify-center items-center;
+    }
+    .auth_form_container {
+        @apply w-full md:w-[45%] h-full bg-[var(--primary)]/5 backdrop-blur-sm flex justify-center items-center flex-col;
+    }
+    .auth_form {
+        @apply w-full md:w-3/4 mx-auto p-3 md:p-1 flex justify-center items-center flex-col mt-8;
+    }
+    .auth_form_label {
+        @apply text-xl font-bold text-[var(--dark_text)] self-start mt-4 mb-2;
+    }
+    .auth_form_input {
+        @apply w-full p-3 bg-white/80 outline-none focus:ring-2 focus:ring-[var(--primary)]  rounded-sm;
+    }
+    .auth_form_button {
+        @apply w-full text-center font-bold text-white bg-[var(--primary)] p-3 mt-8 cursor-pointer hover:bg-[var(--primary)]/80 transition duration-300;
+    }
+    .auth_grid_cont {
+        @apply hidden md:w-[55%] md:flex justify-center items-center flex-col;
+    }
+
+    .auth_grids {
+        @apply grid grid-cols-3 bg-[var(--neutral)] rounded-2xl p-2 gap-4;
+    }
+}
+
+/* Profile page styles*/
+
+@layer components {
+    .profile_page_cont {
+        @apply w-full min-h-screen flex justify-center items-center flex-col;
+    }
+
+    .profile_form {
+        @apply w-[90%] md:w-[450px] mx-auto min-h-[320px] rounded-sm shadow-amber-100 shadow-sm flex justify-center items-center flex-col p-2;
+    }
+
+    .profile_form_cont {
+        @apply w-full h-full flex justify-center items-center flex-col md:flex-row p-2;
+    }
+
+    .profile_form_upload_cont {
+        @apply flex-1 w-full h-full flex justify-center items-center flex-col;
+    }
+
+    .profile_form_upload_label {
+        @apply w-full h-full flex justify-center items-center text-[var(--dark_text)] font-bold cursor-pointer;
+    }
+
+    .profile_form_button {
+        @apply w-3/4 mx-auto p-4 text-center font-bold text-[var(--light_text)] bg-[var(--secondary)] mt-10 rounded-sm cursor-pointer hover:bg-[var(--secondary)]/80 transition duration-300;
+    }
+}
+
+/*NavBar styles*/
+
+@layer components {
+    .header {
+        @apply w-full fixed top-0 z-40 bg-[var(--secondary)] shadow-amber-100/50 shadow-sm;
+    }
+
+    .nav {
+        @apply max-w-7xl mx-auto p-2 flex justify-between items-center;
+    }
+}
