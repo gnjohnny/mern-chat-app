@@ -25,7 +25,7 @@ const RegisterPage = () => {
         Register(info);
     };
 
-    if (registerStatus == "Created") {
+    if (registerStatus === "Created") {
         navigate("/login");
     }
     return (
