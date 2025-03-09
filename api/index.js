@@ -48,10 +48,17 @@ app.use("/api/auth", AuthRoutes);
 app.use("/api/profile", checkAuth, ProfileRoutes);
 app.use("/api/messages", checkAuth, MessagesRoutes);
 
+app.get("/api/test", (req, res) => {
+    return res.status(200).json({
+        success: true,
+        msg: "This is a test route",
+    });
+});
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/dist")));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client/dist", "index.html"));
+        res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
     });
 }
 
