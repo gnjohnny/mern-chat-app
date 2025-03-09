@@ -26,7 +26,7 @@ const LogInPage = () => {
     };
 
     useEffect(() => {
-        if (loginStatus === "OK") {
+        if (loginStatus == "OK") {
             if (userProfile) {
                 navigate("/");
             } else {
