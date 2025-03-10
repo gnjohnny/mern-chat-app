@@ -102,7 +102,9 @@ const ChatPage = () => {
                                         className="w-[30px] h-[30px] rounded-full"
                                     />
                                     <h1 className="text-white font-bold text-sm my-2">
-                                        {profile.name}
+                                        {profile.name.length > 6
+                                            ? profile.name.slice(0, 6) + "..."
+                                            : profile.name}
                                     </h1>
                                 </div>
                             ))}
