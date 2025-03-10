@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { UseAuthStore } from "../store/Auth.Store";
-import { LuLink, LuMessageSquareMore } from "react-icons/lu";
+import { LuCross, LuLink, LuMessageSquareMore } from "react-icons/lu";
 import { LuSendHorizontal } from "react-icons/lu";
 import EmojiPicker from "emoji-picker-react";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
@@ -22,6 +22,8 @@ const ChatPage = () => {
     const [message, setMessage] = useState("");
     const [media, setMedia] = useState("");
     const [typing, setTyping] = useState(false);
+    const [showUsersPage, setShowUsersPage] = useState(true);
+    const [showChatPage, setShowChatPage] = useState(false);
 
     const handleEmojiClick = (emojiData) => {
         setMessage((prev) => prev + emojiData.emoji);
@@ -75,7 +77,12 @@ const ChatPage = () => {
     }, [getAllUsers]);
     return (
         <div className="max-w-7xl mx-auto shadow-sm shadow-black/30 min-h-[90vh] flex rounded-md">
-            <div className="w-[20%] md:w-[25%]">
+            <div
+                className="w-full md:w-[25%]"
+                style={{
+                    display: `${showUsersPage ? "block" : "none"}`,
+                }}
+            >
                 <h1 className="text-white font-bold text-3xl my-2 hidden md:block">
                     All Users
                 </h1>
@@ -94,6 +101,8 @@ const ChatPage = () => {
                                     onClick={() => {
                                         setSelectedUser(profile);
                                         getMessages(profile.userId);
+                                        setShowUsersPage(false);
+                                        setShowChatPage(true);
                                     }}
                                 >
                                     <img
@@ -116,7 +125,12 @@ const ChatPage = () => {
                     )}
                 </div>
             </div>
-            <div className=":w-[80%] md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative">
+            <div
+                className=":w-full md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative"
+                style={{
+                    display: `${showChatPage ? "block" : "none"}`,
+                }}
+            >
                 {selectedUser ? (
                     <div className="w-full h-full flex flex-col">
                         <div className="w-full flex h-[8%] justify-start gap-x-2 p-2 shadow-sm shadow-black/40">
@@ -135,6 +149,15 @@ const ChatPage = () => {
                                     </h1>
                                 )}
                             </div>
+                            <button
+                                className="justify-self-end font-bold text-white"
+                                onClick={() => {
+                                    setShowChatPage(false);
+                                    setShowUsersPage(true);
+                                }}
+                            >
+                                <LuCross size={28} />
+                            </button>
                         </div>
                         <div className="w-full h-[84%] p-2 overflow-y-scroll bottom-0">
                             {messages.length > 0 ? (
