@@ -20,22 +20,26 @@ const LogInPage = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (loginStatus == 200) {
-            console.log(userProfile);
-            navigate(userProfile ? "/" : "/profile");
-        }
-    }, [loginStatus, userProfile, navigate]); 
-
     const handleSubmit = async (e, info) => {
         e.preventDefault();
         try {
-            await logIn(info);
-            await getProfile();
+            logIn(info);
+            getProfile();
         } catch (error) {
             console.log("Error loging in user", error.message);
         }
     };
+
+    useEffect(() => {
+        if (loginStatus == 200) {
+            console.log(userProfile);
+            if (userProfile) {
+                navigate("/");
+            } else {
+                navigate("/profile");
+            }
+        }
+    }, [loginStatus, userProfile, navigate]);
 
     return (
         <div className="auth_container">
