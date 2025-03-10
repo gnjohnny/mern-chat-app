@@ -101,7 +101,7 @@ const ChatPage = () => {
                                         alt="pofile image"
                                         className="w-[30px] h-[30px] rounded-full"
                                     />
-                                    <h1 className="text-white font-bold text-sm my-2">
+                                    <h1 className="text-white font-extralight text-sm my-2">
                                         {profile.name.length > 6
                                             ? profile.name.slice(0, 6) + "..."
                                             : profile.name}
