@@ -25,10 +25,15 @@ const App = () => {
     return (
         <>
             <Routes>
-                <Route path="/login" element={!authUser && <LogInPage />} />
+                <Route path="/login" element={<LogInPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/" element={authUser && <HomePage />} />
+                <Route
+                    path="/"
+                    element={
+                        authUser ? <HomePage /> : <Navigate to={"/login"} />
+                    }
+                />
                 <Route path="/profile/update/:id" element={<UpdateProfile />} />
             </Routes>
             <Toaster />
