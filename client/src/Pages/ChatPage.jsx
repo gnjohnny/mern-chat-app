@@ -75,7 +75,7 @@ const ChatPage = () => {
     }, [getAllUsers]);
     return (
         <div className="max-w-7xl mx-auto shadow-sm shadow-black/30 min-h-[90vh] flex rounded-md">
-            <div className="w-[30%] md:w-[25%] p-2">
+            <div className="w-[10%] md:w-[25%]">
                 <h1 className="text-white font-bold text-3xl my-2 hidden md:block">
                     All Users
                 </h1>
@@ -101,7 +101,7 @@ const ChatPage = () => {
                                         alt="pofile image"
                                         className="w-[30px] h-[30px] rounded-full"
                                     />
-                                    <h1 className="text-white font-light text-sm my-2">
+                                    <h1 className="text-white font-light text-sm my-2 hidden md:block">
                                         {profile.name.length > 6
                                             ? profile.name.slice(0, 6) + "..."
                                             : profile.name}
@@ -116,7 +116,7 @@ const ChatPage = () => {
                     )}
                 </div>
             </div>
-            <div className=":w-[70%] md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative">
+            <div className=":w-[90%] md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative">
                 {selectedUser ? (
                     <div className="w-full h-full flex flex-col">
                         <div className="w-full flex h-[8%] justify-start gap-x-2 p-2 shadow-sm shadow-black/40">
