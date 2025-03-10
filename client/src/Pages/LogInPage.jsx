@@ -18,25 +18,22 @@ const LogInPage = () => {
         password: authData.password,
     };
 
-    const navigate = useNavigate();
+    console.log(userProfile, loginStatus);
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (loginStatus == "OK") {
             console.log("redirecting to home");
-            if (userProfile) {
-                navigate("/");
-            } else {
-                navigate("/profile");
-            }
+            navigate(userProfile ? "/" : "/profile");
         }
     }, [loginStatus, userProfile, navigate]);
 
     const handleSubmit = async (e, info) => {
         e.preventDefault();
         try {
-            logIn(info);
-            getProfile();
+            await logIn(info);
+            await getProfile();
         } catch (error) {
             console.log("Error loging in user", error.message);
         }
@@ -65,7 +62,10 @@ const LogInPage = () => {
                         required
                         placeholder="Input your email..."
                         onChange={(e) =>
-                            setAuthData((prev) => ({ ...prev, email: e.target.value }))
+                            setAuthData((prev) => ({
+                                ...prev,
+                                email: e.target.value,
+                            }))
                         }
                     />
 
