@@ -83,10 +83,10 @@ const ChatPage = () => {
                     display: `${showUsersPage ? "block" : "none"}`,
                 }}
             >
-                <h1 className="text-white font-bold text-3xl my-2 hidden md:block">
+                <h1 className="text-white font-bold text-3xl my-2">
                     All Users
                 </h1>
-                <hr className="hidden md:block text-white w-full mx-auto" />
+                <hr className=" text-white w-full mx-auto" />
                 <div className="w-full h-full flex items-center justify-center flex-col">
                     {profiles.length > 0 ? (
                         <div className="w-full h-full">
@@ -108,12 +108,10 @@ const ChatPage = () => {
                                     <img
                                         src={profile.profileImage}
                                         alt="pofile image"
-                                        className="w-[30px] h-[30px] rounded-full"
+                                        className="w-[40px] h-[40px] rounded-full"
                                     />
-                                    <h1 className="text-white font-light text-sm my-2">
-                                        {profile.name.length > 4
-                                            ? profile.name.slice(0, 4) + "..."
-                                            : profile.name}
+                                    <h1 className="text-white font-bold text-xl my-2">
+                                        {profile.name}
                                     </h1>
                                 </div>
                             ))}
@@ -126,7 +124,7 @@ const ChatPage = () => {
                 </div>
             </div>
             <div
-                className=":w-full md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative"
+                className="w-full md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative"
                 style={{
                     display: `${showChatPage ? "block" : "none"}`,
                 }}
@@ -150,13 +148,13 @@ const ChatPage = () => {
                                 )}
                             </div>
                             <button
-                                className="justify-self-end font-bold text-white"
+                                className="self-end font-bold text-white"
                                 onClick={() => {
                                     setShowChatPage(false);
                                     setShowUsersPage(true);
                                 }}
                             >
-                                <LuCross size={28} />
+                                <RxCross2 size={28} />
                             </button>
                         </div>
                         <div className="w-full h-[84%] p-2 overflow-y-scroll bottom-0">
