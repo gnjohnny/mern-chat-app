@@ -75,7 +75,7 @@ export const UseAuthStore = create((set, get) => ({
                 authUser: res.data.foundUserwithoutPassword,
                 loginStatus: res.statusText,
             });
-            console.log(get().loginStatus);
+            console.log(res.statusText);
         } catch (error) {
             console.log("Error in log in func", error.message);
             toast.error(error.response.data.msg || "Something went wrong");
