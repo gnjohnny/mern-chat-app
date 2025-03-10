@@ -76,7 +76,7 @@ const ChatPage = () => {
         getAllUsers();
     }, [getAllUsers]);
     return (
-        <div className="max-w-7xl mx-auto shadow-sm shadow-black/30 min-h-[90vh] flex rounded-md">
+        <div className="max-w-7xl mx-auto shadow-sm shadow-black/30 min-h-[85vh] flex rounded-md">
             <div
                 className="w-full md:w-[25%]"
                 style={{
@@ -131,24 +131,28 @@ const ChatPage = () => {
             >
                 {selectedUser ? (
                     <div className="w-full h-full flex flex-col">
-                        <div className="w-full flex h-[8%] justify-start items-center gap-x-2 p-2 shadow-sm shadow-black/40">
-                            <img
-                                src={selectedUser.profileImage}
-                                alt="pofile image"
-                                className="w-[40px] h-[40px] rounded-full"
-                            />
-                            <h1 className="text-white font-bold text-xl">
-                                {selectedUser.name}
-                            </h1>
-                            <button
-                                className="justify-self-end font-bold text-white"
-                                onClick={() => {
-                                    setShowChatPage(false);
-                                    setShowUsersPage(true);
-                                }}
-                            >
-                                <RxCross2 size={28} />
-                            </button>
+                        <div className="w-full flex h-[8%] justify-center items-center gap-x-2 p-2 shadow-sm shadow-black/40">
+                            <div className="flex-1 flex justify-start items-center gap-1">
+                                <img
+                                    src={selectedUser.profileImage}
+                                    alt="pofile image"
+                                    className="w-[40px] h-[40px] rounded-full"
+                                />
+                                <h1 className="text-white font-bold text-xl">
+                                    {selectedUser.name}
+                                </h1>
+                            </div>
+                            <div className="flex-1 flex justify-end items-center gap-1">
+                                <button
+                                    className="justify-self-end font-bold text-white mx-2"
+                                    onClick={() => {
+                                        setShowChatPage(false);
+                                        setShowUsersPage(true);
+                                    }}
+                                >
+                                    <RxCross2 size={28} />
+                                </button>
+                            </div>
                         </div>
                         <div className="w-full h-[84%] p-2 overflow-y-scroll bottom-0">
                             {messages.length > 0 ? (
