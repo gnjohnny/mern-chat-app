@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LuMessageSquareMore } from "react-icons/lu";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UseAuthStore } from "../store/Auth.Store";
 import { useProfileStore } from "../store/profile.store";
 
@@ -23,6 +23,7 @@ const LogInPage = () => {
         e.preventDefault();
         try {
             logIn(info);
+            getProfile();
         } catch (error) {
             console.log("Error loging in user", error.message);
         }
@@ -30,11 +31,11 @@ const LogInPage = () => {
 
     useEffect(() => {
         if (loginStatus == "OK") {
-            getProfile();
+            console.log("redirecting to home");
             if (userProfile) {
-                <Navigate to={"/"} />;
+                window.location.href = "/";
             } else {
-                <Navigate to={"/profile"} />;
+                window.location.href = "/profile";
             }
         }
     }, [loginStatus, userProfile, navigate]);
