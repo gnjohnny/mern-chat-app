@@ -118,7 +118,7 @@ const ChatPage = () => {
                     )}
                 </div>
             </div>
-            <div className=":w-[75%] max-h-[90vh] shadow shadow-black/30 relative">
+            <div className=":w-[70%] md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative">
                 {selectedUser ? (
                     <div className="w-full h-full flex flex-col">
                         <div className="w-full flex h-[8%] justify-start gap-x-2 p-2 shadow-sm shadow-black/40">
