@@ -76,7 +76,7 @@ const ChatPage = () => {
         getAllUsers();
     }, [getAllUsers]);
     return (
-        <div className="max-w-7xl mx-auto shadow-sm shadow-black/30 min-h-[85vh] flex rounded-md">
+        <div className="max-w-7xl mx-auto shadow-sm shadow-black/30 min-h-[100vh] flex rounded-md">
             <div
                 className="w-full md:w-[25%]"
                 style={{
@@ -189,7 +189,10 @@ const ChatPage = () => {
                                             }`}
                                         >
                                             {mess.image ? (
-                                                <a href={mess.image} download>
+                                                <a
+                                                    href={`${mess.image}?fl_attachment=true`}
+                                                    download
+                                                >
                                                     <img
                                                         src={mess.image}
                                                         alt="message image"
@@ -217,7 +220,7 @@ const ChatPage = () => {
                         </div>
                         <hr className="text-white" />
                         <form
-                            className="w-full h-[8%] relative"
+                            className="w-full h-[8%] relative bottom-0"
                             onSubmit={(e) => {
                                 handleSubmit(
                                     e,
