@@ -56,7 +56,7 @@ export const UseAuthStore = create((set, get) => ({
             set({ registerLoad: true });
             const res = await axiosInstance.post("/auth/register", data);
             toast.success(res.data.msg || "Registered successfully");
-            set({ registerStatus: res.statusText });
+            set({ registerStatus: res.status });
         } catch (error) {
             console.log("Error in register func", error.message);
             toast.error(error.response.data.msg || "Something went wrong");
@@ -75,7 +75,6 @@ export const UseAuthStore = create((set, get) => ({
                 authUser: res.data.foundUserwithoutPassword,
                 loginStatus: res.status,
             });
-            console.log(res.status);
         } catch (error) {
             console.log("Error in log in func", error.message);
             toast.error(error.response.data.msg || "Something went wrong");
@@ -93,7 +92,7 @@ export const UseAuthStore = create((set, get) => ({
             set({
                 authUser: null,
                 userProfile: null,
-                logOutStatus: res.statusText,
+                logOutStatus: res.status,
             });
             toast.success(res.data.msg || "Logged out successfully");
         } catch (error) {

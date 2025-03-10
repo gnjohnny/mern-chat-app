@@ -30,7 +30,7 @@ const RegisterPage = () => {
     };
 
     useEffect(() => {
-        if (registerStatus == "Created") {
+        if (registerStatus == 201) {
             navigate("/login");
         }
     }, [registerStatus, navigate]);

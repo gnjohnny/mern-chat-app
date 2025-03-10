@@ -33,7 +33,7 @@ const LogInPage = () => {
     };
 
     useEffect(() => {
-        if (loginStatus == "OK") {
+        if (loginStatus == 200) {
             console.log("redirecting to home");
             navigate(userProfile ? "/" : "/profile");
         }

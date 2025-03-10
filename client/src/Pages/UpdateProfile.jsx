@@ -64,7 +64,7 @@ const UpdateProfile = () => {
     };
 
     useEffect(() => {
-        if (status == "OK") {
+        if (status == 200) {
             navigate("/");
         }
     }, [status, navigate]);

@@ -40,7 +40,7 @@ const ProfilePage = () => {
     };
 
     useEffect(() => {
-        if (status == "Created") navigate("/");
+        if (status == 201) navigate("/");
     }, [status, navigate]);
     return (
         <div className="profile_page_cont">

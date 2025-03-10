@@ -27,7 +27,7 @@ export const useProfileStore = create((set, get) => ({
             if (res.data) {
                 set({
                     userProfile: res.data.newProfile,
-                    status: res.statusText,
+                    status: res.status,
                 });
             }
             toast.success(res.data.msg || "Profile created successfully");
@@ -48,7 +48,7 @@ export const useProfileStore = create((set, get) => ({
             if (res.data) {
                 set({
                     userProfile: res.data.profile,
-                    status: res.statusText
+                    status: res.status
                 });
             }
             toast.success(res.data.msg || "Profile updated successfully")
