@@ -28,12 +28,6 @@ export const sendMessage = async (req, res) => {
         const userId = req.user.id;
         const { message, media } = req.body;
 
-        if (!message)
-            return res.status(400).json({
-                success: false,
-                msg: "Message is required",
-            });
-
         let image;
         let imageId;
 

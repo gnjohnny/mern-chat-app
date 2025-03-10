@@ -131,24 +131,17 @@ const ChatPage = () => {
             >
                 {selectedUser ? (
                     <div className="w-full h-full flex flex-col">
-                        <div className="w-full flex h-[8%] justify-start gap-x-2 p-2 shadow-sm shadow-black/40">
+                        <div className="w-full flex h-[8%] justify-start items-center gap-x-2 p-2 shadow-sm shadow-black/40">
                             <img
                                 src={selectedUser.profileImage}
                                 alt="pofile image"
                                 className="w-[40px] h-[40px] rounded-full"
                             />
-                            <div className="flex justify-center items-center flex-col">
-                                <h1 className="text-white font-bold text-xl">
-                                    {selectedUser.name}
-                                </h1>
-                                {typing && (
-                                    <h1 className="text-green-400 font-bold text-sm my-2">
-                                        Typing...
-                                    </h1>
-                                )}
-                            </div>
+                            <h1 className="text-white font-bold text-xl">
+                                {selectedUser.name}
+                            </h1>
                             <button
-                                className="self-end font-bold text-white"
+                                className="justify-self-end font-bold text-white"
                                 onClick={() => {
                                     setShowChatPage(false);
                                     setShowUsersPage(true);
@@ -192,11 +185,13 @@ const ChatPage = () => {
                                             }`}
                                         >
                                             {mess.image ? (
-                                                <img
-                                                    src={mess.image}
-                                                    alt="message image"
-                                                    className="w-[150px] h-[150px]"
-                                                />
+                                                <a href={mess.image} download>
+                                                    <img
+                                                        src={mess.image}
+                                                        alt="message image"
+                                                        className="w-[150px] h-[150px]"
+                                                    />
+                                                </a>
                                             ) : (
                                                 ""
                                             )}
