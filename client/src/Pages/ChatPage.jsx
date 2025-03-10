@@ -103,22 +103,22 @@ const ChatPage = () => {
                                     <img
                                         src={profile.profileImage}
                                         alt="pofile image"
-                                        className="w-[40px] h-[40px] rounded-full"
+                                        className="w-[30px] h-[30px] rounded-full"
                                     />
-                                    <h1 className="text-white font-bold text-xl my-2 hidden md:block">
+                                    <h1 className="text-white font-bold text-sm my-2">
                                         {profile.name}
                                     </h1>
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <h1 className="text-white font-bold text-3xl my-2 hidden md:block">
+                        <h1 className="text-white font-bold text-sm md:text-3xl my-2 text-center">
                             No users found currently 😥
                         </h1>
                     )}
                 </div>
             </div>
-            <div className="w-[80%] md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative">
+            <div className=":w-[75%] max-h-[90vh] shadow shadow-black/30 relative">
                 {selectedUser ? (
                     <div className="w-full h-full flex flex-col">
                         <div className="w-full flex h-[8%] justify-start gap-x-2 p-2 shadow-sm shadow-black/40">
@@ -210,7 +210,7 @@ const ChatPage = () => {
                                 setMedia("");
                             }}
                         >
-                            <label className="flex justify-between items-center p-3 w-full h-full bg-neutral/30 outline-none gap-2 ">
+                            <label className="flex justify-between items-center px-3 w-full h-full bg-neutral/30 outline-none gap-2 ">
                                 <div className="flex justify-center items-center">
                                     <label
                                         htmlFor="image"
@@ -247,7 +247,7 @@ const ChatPage = () => {
                                     onChange={(e) => {
                                         setMessage(e.target.value);
                                     }}
-                                    className="grow placeholder:text-[var(--neutral_text)] outline-none text-white text-lg font-light"
+                                    className="grow placeholder:text-[var(--neutral_text)] outline-none text-white text-lg font-light h-full"
                                     placeholder="Type a message"
                                 />
                                 <div className="flex justify-center items-center gap-3">
