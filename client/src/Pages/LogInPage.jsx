@@ -20,7 +20,12 @@ const LogInPage = () => {
 
     const navigate = useNavigate();
 
-    
+    useEffect(() => {
+        if (loginStatus == 200) {
+            console.log("redirecting to home");
+            navigate(userProfile ? "/" : "/profile");
+        }
+    }, [loginStatus, userProfile, navigate]); 
 
     const handleSubmit = async (e, info) => {
         e.preventDefault();
@@ -31,13 +36,6 @@ const LogInPage = () => {
             console.log("Error loging in user", error.message);
         }
     };
-
-    useEffect(() => {
-        if (loginStatus == 200) {
-            console.log("redirecting to home");
-            navigate(userProfile ? "/" : "/profile");
-        }
-    }, [loginStatus, userProfile, navigate]);
 
     return (
         <div className="auth_container">
