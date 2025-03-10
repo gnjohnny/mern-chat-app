@@ -24,7 +24,7 @@ export const io = ioConfig(server);
 
 io.on("connection", (socket) => {
     socket.on("newMessage", (msg) => {
-        io.emit("newMessage", msg);
+        io.to(msg.receiver).emit("newMessage", msg);
     });
 
     socket.on("disconnect", () => {
