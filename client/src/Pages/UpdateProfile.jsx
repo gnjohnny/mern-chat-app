@@ -56,12 +56,18 @@ const UpdateProfile = () => {
 
     const handleSubmit = (e, info) => {
         e.preventDefault();
-        updateProfile(info);
+        try {
+            updateProfile(info);
+        } catch (error) {
+            console.log("Error updating profile", error.message);
+        }
     };
 
-    if (status == "OK") {
-        navigate("/");
-    }
+    useEffect(() => {
+        if (status == "OK") {
+            navigate("/");
+        }
+    }, [status, navigate]);
     return (
         <div className="profile_page_cont">
             <form
@@ -117,7 +123,10 @@ const UpdateProfile = () => {
                             value={profile.name}
                             className="border-2 border-white/40 rounded-sm outline-none focus:ring-2 focus:ring-[var(--primary)] p-2 text-white text-md"
                             onChange={(e) =>
-                                setProfile({ ...profile, name: e.target.value })
+                                setProfile((prev) => ({
+                                    ...prev,
+                                    name: e.target.value,
+                                }))
                             }
                         />
 
@@ -134,7 +143,10 @@ const UpdateProfile = () => {
                             rows={3}
                             className="border-2 border-white/40 rounded-sm outline-none focus:ring-2 p-1 text-white text-md"
                             onChange={(e) =>
-                                setProfile({ ...profile, bio: e.target.value })
+                                setProfile((prev) => ({
+                                    ...prev,
+                                    bio: e.target.value,
+                                }))
                             }
                         ></textarea>
                     </div>

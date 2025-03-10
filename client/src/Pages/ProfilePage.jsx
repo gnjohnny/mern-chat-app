@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LuCircleFadingPlus } from "react-icons/lu";
 import { useProfileStore } from "../store/profile.store";
 import { useNavigate } from "react-router-dom";
@@ -32,10 +32,16 @@ const ProfilePage = () => {
 
     const handleSubmit = (e, info) => {
         e.preventDefault();
-        createProfile(info);
+        try {
+            createProfile(info);
+        } catch (error) {
+            console.log("Error creating profile", error.message);
+        }
     };
 
-    if (status == "Created") navigate("/");
+    useEffect(() => {
+        if (status == "Created") navigate("/");
+    }, [status, navigate]);
     return (
         <div className="profile_page_cont">
             <form
@@ -88,7 +94,10 @@ const ProfilePage = () => {
                             rows={3}
                             className="border-2 border-white/40 rounded-sm outline-none focus:ring-2 p-1 text-white text-md"
                             onChange={(e) =>
-                                setProfile({ ...profile, bio: e.target.value })
+                                setProfile((prev) => ({
+                                    ...prev,
+                                    bio: e.target.value,
+                                }))
                             }
                         ></textarea>
                     </div>

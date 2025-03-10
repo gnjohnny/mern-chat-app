@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LuMessageSquareMore } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
 import { UseAuthStore } from "../store/Auth.Store";
 
 const RegisterPage = () => {
-    const divs = ["", "", "", "", "", "", "", "", ""];
+    const divs = Array(9).fill("");
     const { Register, registerLoad, registerStatus } = UseAuthStore();
     const [authData, setAuthData] = useState({
         email: "",
@@ -22,12 +22,18 @@ const RegisterPage = () => {
 
     const handleSubmit = (e, info) => {
         e.preventDefault();
-        Register(info);
+        try {
+            Register(info);
+        } catch (error) {
+            console.log("Error registering user", error.message);
+        }
     };
 
-    if (registerStatus == "Created") {
-        navigate("/login");
-    }
+    useEffect(() => {
+        if (registerStatus == "Created") {
+            navigate("/login");
+        }
+    }, [registerStatus, navigate]);
     return (
         <div className="auth_container">
             <div className="auth_form_container">
@@ -51,23 +57,26 @@ const RegisterPage = () => {
                         className="auth_form_input"
                         placeholder="Input your email..."
                         onChange={(e) =>
-                            setAuthData({ ...authData, email: e.target.value })
+                            setAuthData((prev) => ({
+                                ...prev,
+                                email: e.target.value,
+                            }))
                         }
                     />
                     <label htmlFor="username" className="auth_form_label">
                         Username:{" "}
                     </label>
                     <input
-                        type="username"
+                        type="text"
                         id="username"
                         required
                         className="auth_form_input"
                         placeholder="Input your username..."
                         onChange={(e) =>
-                            setAuthData({
-                                ...authData,
+                            setAuthData((prev) => ({
+                                ...prev,
                                 username: e.target.value,
-                            })
+                            }))
                         }
                     />
 
@@ -81,10 +90,10 @@ const RegisterPage = () => {
                         className="auth_form_input"
                         placeholder="Input your password..."
                         onChange={(e) =>
-                            setAuthData({
-                                ...authData,
+                            setAuthData((prev) => ({
+                                ...prev,
                                 password: e.target.value,
-                            })
+                            }))
                         }
                     />
 

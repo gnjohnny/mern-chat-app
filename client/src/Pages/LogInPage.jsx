@@ -5,9 +5,9 @@ import { UseAuthStore } from "../store/Auth.Store";
 import { useProfileStore } from "../store/profile.store";
 
 const LogInPage = () => {
-    const { logIn, logInLoad, loginStatus} = UseAuthStore();
-    const {getProfile, userProfile} = useProfileStore()
-    const divs = ["", "", "", "", "", "", "", "", ""];
+    const { logIn, logInLoad, loginStatus } = UseAuthStore();
+    const { getProfile, userProfile } = useProfileStore();
+    const divs = Array(9).fill("");
     const [authData, setAuthData] = useState({
         email: "",
         password: "",
@@ -21,19 +21,23 @@ const LogInPage = () => {
     const navigate = useNavigate();
     const handleSubmit = async (e, info) => {
         e.preventDefault();
-        logIn(info);
-        getProfile();
+        try {
+            logIn(info);
+        } catch (error) {
+            console.log("Error loging in user", error.message);
+        }
     };
 
     useEffect(() => {
         if (loginStatus == "OK") {
+            getProfile();
             if (userProfile) {
                 navigate("/");
             } else {
                 navigate("/profile");
             }
         }
-    }, [loginStatus, userProfile]);
+    }, [loginStatus, userProfile, navigate]);
 
     return (
         <div className="auth_container">
@@ -58,7 +62,7 @@ const LogInPage = () => {
                         required
                         placeholder="Input your email..."
                         onChange={(e) =>
-                            setAuthData({ ...authData, email: e.target.value })
+                            setAuthData((prev) => ({ ...prev, email: e.target.value }))
                         }
                     />
 
@@ -72,10 +76,10 @@ const LogInPage = () => {
                         className="auth_form_input"
                         placeholder="Input your password..."
                         onChange={(e) =>
-                            setAuthData({
-                                ...authData,
+                            setAuthData((prev) => ({
+                                ...prev,
                                 password: e.target.value,
-                            })
+                            }))
                         }
                     />
 
