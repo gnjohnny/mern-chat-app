@@ -65,7 +65,7 @@ export const UseAuthStore = create((set, get) => ({
         }
     },
 
-    logIn: async (data) => { 
+    logIn: async (data) => {
         try {
             set({ logInLoad: true });
             const res = await axiosInstance.post("/auth/login", data);
@@ -75,6 +75,7 @@ export const UseAuthStore = create((set, get) => ({
                 authUser: res.data.foundUserwithoutPassword,
                 loginStatus: res.statusText,
             });
+            console.log(get().loginStatus);
         } catch (error) {
             console.log("Error in log in func", error.message);
             toast.error(error.response.data.msg || "Something went wrong");
@@ -82,7 +83,7 @@ export const UseAuthStore = create((set, get) => ({
             set({ logInLoad: false });
         }
     },
- 
+
     logOut: async () => {
         try {
             const res = await axiosInstance.post("/auth/logout");
