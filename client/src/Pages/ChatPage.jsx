@@ -21,7 +21,6 @@ const ChatPage = () => {
     const [showEmoji, setShowEmoji] = useState(false);
     const [message, setMessage] = useState("");
     const [media, setMedia] = useState("");
-    const [typing, setTyping] = useState(false);
     const [showUsersPage, setShowUsersPage] = useState(true);
     const [showChatPage, setShowChatPage] = useState(false);
 
@@ -55,6 +54,17 @@ const ChatPage = () => {
         sendMessages(id, text, photo);
         setMessage("");
     };
+
+    const handleDownload = (image) => {
+        const link = document.createElement("a");
+        link.href = `${image}?fl_attachment=true`;
+        link.setAttribute("download", "image.jpg");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    <button onClick={handleDownload}>Download Image</button>;
 
     useEffect(() => {
         messageRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -189,16 +199,16 @@ const ChatPage = () => {
                                             }`}
                                         >
                                             {mess.image ? (
-                                                <a
-                                                    href={`${mess.image}?fl_attachment=true`}
-                                                    download
-                                                >
-                                                    <img
-                                                        src={mess.image}
-                                                        alt="message image"
-                                                        className="w-[150px] h-[150px]"
-                                                    />
-                                                </a>
+                                                <img
+                                                    src={mess.image}
+                                                    alt="message image"
+                                                    className="w-[150px] h-[150px]"
+                                                    onClick={() => {
+                                                        handleDownload(
+                                                            mess.image,
+                                                        );
+                                                    }}
+                                                />
                                             ) : (
                                                 ""
                                             )}
