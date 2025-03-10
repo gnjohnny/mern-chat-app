@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LuMessageSquareMore } from "react-icons/lu";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UseAuthStore } from "../store/Auth.Store";
 import { useProfileStore } from "../store/profile.store";
 
@@ -32,9 +32,9 @@ const LogInPage = () => {
         if (loginStatus == "OK") {
             getProfile();
             if (userProfile) {
-                navigate("/");
+                <Navigate to={"/"} />;
             } else {
-                navigate("/profile");
+                <Navigate to={"/profile"} />;
             }
         }
     }, [loginStatus, userProfile, navigate]);
@@ -62,7 +62,10 @@ const LogInPage = () => {
                         required
                         placeholder="Input your email..."
                         onChange={(e) =>
-                            setAuthData((prev) => ({ ...prev, email: e.target.value }))
+                            setAuthData((prev) => ({
+                                ...prev,
+                                email: e.target.value,
+                            }))
                         }
                     />
 
