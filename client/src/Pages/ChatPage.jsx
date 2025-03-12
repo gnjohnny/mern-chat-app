@@ -88,10 +88,11 @@ const ChatPage = () => {
     return (
         <div className="max-w-7xl mx-auto shadow-sm shadow-black/30 min-h-[100vh] flex rounded-md">
             <div
-                className="w-full md:w-[25%]"
-                style={{
-                    display: `${showUsersPage ? "block" : "none"}`,
-                }}
+                className={`  ${
+                    showUsersPage
+                        ? "block w-full md:w-[25%]"
+                        : "none md:block md:w-[25%]"
+                }`}
             >
                 <h1 className="text-white font-bold text-3xl my-2">
                     All Users
@@ -134,10 +135,11 @@ const ChatPage = () => {
                 </div>
             </div>
             <div
-                className="w-full md:w-[75%] max-h-[90vh] shadow shadow-black/30 relative"
-                style={{
-                    display: `${showChatPage ? "block" : "none"}`,
-                }}
+                className={`max-h-screen shadow shadow-black/30 relative ${
+                    showChatPage
+                        ? "block w-full md:w-[75%]"
+                        : "none md:block md:w-[75%]"
+                }`}
             >
                 {selectedUser ? (
                     <div className="w-full h-full flex flex-col">
